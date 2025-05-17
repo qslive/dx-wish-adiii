@@ -5,20 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Happy Birthday Adii</title>
 <style>
-  body {
-    margin: 0; padding: 0;
+  html, body {
+    margin: 0;
+    padding: 0;
     background: black;
     overflow: hidden;
     font-family: sans-serif;
     color: white;
     text-align: center;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     user-select: none;
     position: relative;
   }
+
   h1#mainText {
-    margin-top: 20vh;
-    font-size: 36px;
+    margin: 0;
+    padding-top: 20vh;
+    font-size: 7vw;
     font-weight: bold;
     transition: all 0.3s ease;
     user-select: none;
@@ -31,68 +35,52 @@
     animation-timing-function: linear;
     pointer-events: none;
     will-change: transform, opacity;
-  }
-  .float-word {
-    font-weight: 600;
-    font-size: 12px;
     white-space: nowrap;
   }
+
+  .float-word {
+    font-weight: 600;
+    font-size: 3vw;
+  }
+
   .float-heart {
-    font-size: 16px;
+    font-size: 5vw;
     color: #ff4d6d;
     animation-name: floatUpHeart;
   }
+
   .float-balloon {
-    font-size: 20px;
+    font-size: 6vw;
     animation-name: floatUpBalloon;
   }
 
   @keyframes floatUpHeart {
-    0% {
-      transform: translateY(100vh);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-120vh);
-      opacity: 0;
-    }
+    0% { transform: translateY(100vh); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(-120vh); opacity: 0; }
   }
+
   @keyframes floatUpBalloon {
-    0% {
-      transform: translateY(100vh);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-120vh);
-      opacity: 0;
-    }
+    0% { transform: translateY(100vh); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(-120vh); opacity: 0; }
   }
 
   .cake {
     position: fixed;
-    bottom: 20px;
-    width: 100px;
+    bottom: 1vh;
+    width: 20vw;
     user-select: none;
     pointer-events: none;
   }
-  .cake.left {
-    left: 10px;
-  }
-  .cake.right {
-    right: 10px;
-  }
 
-  /* Firework sparks */
+  .cake.left { left: 2vw; }
+  .cake.right { right: 2vw; }
+
   .firework-spark {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 1.5vw;
+    height: 1.5vw;
     border-radius: 50%;
     opacity: 1;
     pointer-events: none;
@@ -100,6 +88,7 @@
     animation-fill-mode: forwards;
     will-change: transform, opacity;
   }
+
   @keyframes burst {
     0% {
       transform: translate(0, 0) scale(1);
@@ -116,11 +105,10 @@
     }
   }
 
-  /* Firecracker base */
   .firecracker {
     position: absolute;
-    width: 12px;
-    height: 40px;
+    width: 3vw;
+    height: 10vw;
     background: linear-gradient(180deg, #e00, #800);
     border-radius: 3px;
     box-shadow: 0 0 8px #f00;
@@ -134,10 +122,10 @@
 
   #playBtn {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
     background: white;
     color: black;
     border: none;
@@ -153,25 +141,11 @@
   <h1 id="mainText">Happy Birthday Adii</h1>
   <button id="playBtn">Play Birthday Song</button>
 
-  <!-- Cake images -->
-  <img
-    src="https://i.ibb.co/DPgzK1fm/colorful-birthday-candles-on-transparent-background-free-png-removebg-preview.png"
-    class="cake left"
-    alt="Birthday candles"
-    draggable="false"
-  />
-  <img
-    src="https://i.ibb.co/F4X2hgDH/images-66-removebg-preview.png"
-    class="cake right"
-    alt="Birthday cake"
-    draggable="false"
-  />
+  <img src="https://i.ibb.co/DPgzK1fm/colorful-birthday-candles-on-transparent-background-free-png-removebg-preview.png" class="cake left" alt="Cake" />
+  <img src="https://i.ibb.co/F4X2hgDH/images-66-removebg-preview.png" class="cake right" alt="Cake" />
 
   <audio id="birthday-audio" loop>
-    <source
-      src="https://www.dropbox.com/scl/fi/4in95d7v8rwgrawmyjxpz/InShot_20250517_135518039.mp3?rlkey=6ukhtdx8xvgww900l6jewdbf2&dl=1"
-      type="audio/mpeg"
-    />
+    <source src="https://www.dropbox.com/scl/fi/4in95d7v8rwgrawmyjxpz/InShot_20250517_135518039.mp3?rlkey=6ukhtdx8xvgww900l6jewdbf2&dl=1" type="audio/mpeg" />
   </audio>
 
 <script>
@@ -180,22 +154,17 @@
     "Impact", "Verdana", "Trebuchet MS", "Palatino Linotype",
     "Lucida Console"
   ];
-  const colors = [
-    "red", "orange", "yellow", "lime", "cyan", "magenta", "white"
-  ];
-
+  const colors = ["red", "orange", "yellow", "lime", "cyan", "magenta", "white"];
   const mainText = document.getElementById('mainText');
   const audio = document.getElementById('birthday-audio');
   const playBtn = document.getElementById('playBtn');
 
-  // Animate main text blink with random font & color
   function animateMainText() {
-    let blinkOn = true;
+    let blink = true;
     setInterval(() => {
-      blinkOn = !blinkOn;
-      if (blinkOn) {
+      blink = !blink;
+      if (blink) {
         mainText.style.opacity = '1';
-        // Change font family randomly every blink ON
         mainText.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
         mainText.style.color = colors[Math.floor(Math.random() * colors.length)];
       } else {
@@ -203,9 +172,9 @@
       }
     }, 1000);
   }
+
   animateMainText();
 
-  // Floating small words: Happy, Birthday, Adiii
   const floatingWords = ["Happy", "Birthday", "Adiii"];
 
   function createFloatingWord(text) {
@@ -213,119 +182,80 @@
     el.className = "float-word";
     el.textContent = text;
     el.style.left = Math.random() * 90 + "vw";
-    el.style.top = "110vh"; // Start below screen
-    el.style.fontSize = (12 + Math.random() * 6) + "px";
+    el.style.top = "110vh";
     el.style.color = colors[Math.floor(Math.random() * colors.length)];
     el.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
+    el.style.animation = "floatUpWord " + (10 + Math.random() * 5) + "s linear forwards";
     document.body.appendChild(el);
-
-    el.style.animationName = "floatUpWord";
-    el.style.animationDuration = (12 + Math.random() * 6) + "s";
-    el.style.animationTimingFunction = "linear";
-    el.style.animationFillMode = "forwards";
-
     el.addEventListener('animationend', () => el.remove());
   }
 
-  // Define keyframes for floating words in JS
   const styleSheet = document.createElement('style');
   styleSheet.type = 'text/css';
   styleSheet.innerText = `
     @keyframes floatUpWord {
-      0% {
-        transform: translateY(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-130vh);
-        opacity: 0;
-      }
+      0% { transform: translateY(0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-130vh); opacity: 0; }
     }
   `;
   document.head.appendChild(styleSheet);
 
-  // Floating hearts ❤️ emoji drifting upwards
   function createFloatingHeart() {
     const el = document.createElement("div");
     el.className = "float-heart";
     el.textContent = "❤️";
     el.style.left = Math.random() * 100 + "vw";
-    el.style.top = "110vh";  // start below screen bottom
-    el.style.animationDuration = (7 + Math.random() * 6) + "s";
-    el.style.fontSize = (14 + Math.random() * 8) + "px";
+    el.style.top = "110vh";
+    el.style.animationDuration = (7 + Math.random() * 5) + "s";
     document.body.appendChild(el);
-    el.style.animationName = "floatUpHeart";
     el.addEventListener('animationend', () => el.remove());
   }
 
-  // Floating balloons 🎈 emoji drifting upwards
   function createFloatingBalloon() {
     const el = document.createElement("div");
     el.className = "float-balloon";
     el.textContent = "🎈";
     el.style.left = Math.random() * 100 + "vw";
-    el.style.top = "110vh";  // start below screen bottom
-    el.style.animationDuration = (10 + Math.random() * 6) + "s";
+    el.style.top = "110vh";
+    el.style.animationDuration = (8 + Math.random() * 4) + "s";
     el.style.color = colors[Math.floor(Math.random() * colors.length)];
-    el.style.fontSize = (18 + Math.random() * 10) + "px";
     document.body.appendChild(el);
-    el.style.animationName = "floatUpBalloon";
     el.addEventListener('animationend', () => el.remove());
   }
 
-  // Firecracker burst animation across full page
   function createFireworkBurst() {
-    const sparksCount = 15;
+    const sparksCount = 14;
     for(let i=0; i<sparksCount; i++) {
       const spark = document.createElement('div');
       spark.className = 'firework-spark';
       spark.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-
       const angle = Math.random() * 2 * Math.PI;
       const distance = 60 + Math.random() * 40;
       spark.style.setProperty('--x', `${Math.cos(angle)*distance}px`);
       spark.style.setProperty('--y', `${Math.sin(angle)*distance}px`);
-
-      // Random start position anywhere in viewport
       spark.style.left = Math.random() * window.innerWidth + 'px';
       spark.style.top = Math.random() * window.innerHeight + 'px';
-
       spark.style.animation = `burst 800ms ease forwards`;
       spark.style.animationDelay = (i*40) + "ms";
-
       document.body.appendChild(spark);
       spark.addEventListener('animationend', () => spark.remove());
     }
   }
-  // Repeat burst every 800ms continuously across page
-  setInterval(createFireworkBurst, 800);
 
-  // Create floating hearts, balloons, and words at intervals
-  setInterval(() => {
-    createFloatingHeart();
-  }, 700);
+  setInterval(createFireworkBurst, 900);
+  setInterval(() => createFloatingHeart(), 700);
+  setInterval(() => createFloatingBalloon(), 1000);
+  setInterval(() => createFloatingWord(floatingWords[Math.floor(Math.random() * floatingWords.length)]), 1200);
 
-  setInterval(() => {
-    createFloatingBalloon();
-  }, 900);
-
-  setInterval(() => {
-    const word = floatingWords[Math.floor(Math.random() * floatingWords.length)];
-    createFloatingWord(word);
-  }, 1200);
-
-  // Try autoplay audio; if blocked, show button
   function tryPlayAudio() {
     audio.play().catch(() => {
       playBtn.style.display = "block";
     });
   }
+
   tryPlayAudio();
 
-  // Play button click handler
   playBtn.onclick = () => {
     audio.play();
     playBtn.style.display = "none";
